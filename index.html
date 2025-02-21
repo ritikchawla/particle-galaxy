@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Particle Galaxy</title>
+    <title>Ritik Chawla’s Cosmic Portfolio</title>
     <style>
-        body { margin: 0; overflow: hidden; background: #000; }
+        body { margin: 0; overflow: hidden; background: #000; font-family: 'Arial', sans-serif; }
         canvas { display: block; }
+        .overlay { 
+            position: absolute; 
+            top: 20px; 
+            left: 20px; 
+            color: #fff; 
+            pointer-events: none; 
+            z-index: 10; 
+        }
     </style>
 </head>
 <body>
+    <div class="overlay">
+        <h1>Ritik Chawla: Galactic Code Overlord</h1>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="./script.js"></script>
 </body>
