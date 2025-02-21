@@ -1,77 +1,142 @@
-// Scene, Camera, Renderer
+// Scene Setup
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Particle Galaxy Background
-const particleCount = 5000;
+// Nebula Background
+const textureLoader = new THREE.TextureLoader();
+scene.background = textureLoader.load('./nebula.jpg');
+
+// Background Particle Galaxy
+const particleCount = 2000;
 const particles = new THREE.BufferGeometry();
 const positions = new Float32Array(particleCount * 3);
-for (let i = 0; i < particleCount * 3; i++) {
-    positions[i] = (Math.random() - 0.5) * 2000;
+const colors = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount * 3; i += 3) {
+    positions[i] = (Math.random() - 0.5) * 1500;
+    positions[i + 1] = (Math.random() - 0.5) * 1500;
+    positions[i + 2] = (Math.random() - 0.5) * 1500;
+    colors[i] = Math.random();     // R
+    colors[i + 1] = Math.random(); // G
+    colors[i + 2] = Math.random(); // B
 }
 particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-const particleMaterial = new THREE.PointsMaterial({ color: 0xaaaaaa, size: 2, transparent: true });
+particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+const particleMaterial = new THREE.PointsMaterial({
+    size: 0.8,
+    vertexColors: true,
+    transparent: true,
+    blending: THREE.AdditiveBlending // Glow effect
+});
 const particleSystem = new THREE.Points(particles, particleMaterial);
 scene.add(particleSystem);
 
-// Portfolio Clusters (Experience, Skills, Projects, Education)
+// Define Clusters (Resume Sections)
 const clusters = [
-    { name: "Experience", position: [-300, 200, 0], color: 0xff5555, text: "I Build Stuff That Doesn’t Crash" },
-    { name: "Skills", position: [300, 200, 0], color: 0x55ff55, text: "Golang? Kubernetes? I’m Your Guy" },
-    { name: "Projects", position: [-300, -200, 0], color: 0x5555ff, text: "Distributed Systems Are My Playground" },
-    { name: "Education", position: [300, -200, 0], color: 0xffff55, text: "9.16 CGPA, NBD" }
+    { name: "Experience", position: [-150, 80, 0], color: 0xff5555, text: "I Build Stuff That Doesn’t Crash" },
+    { name: "Skills", position: [150, 80, 0], color: 0x55ff55, text: "Golang? Kubernetes? I’m Your Guy" },
+    { name: "Projects", position: [-150, -80, 0], color: 0x5555ff, text: "Distributed Systems Are My Playground" },
+    { name: "Education", position: [150, -80, 0], color: 0xffff55, text: "9.16 CGPA, NBD" }
 ];
 
-// Add Clusters as Particle Groups + Text
+// Create Cluster Particle Systems with Glow
+const clusterSystems = [];
 clusters.forEach(cluster => {
-    // Mini particle cloud for each cluster
     const clusterParticles = new THREE.BufferGeometry();
-    const clusterPositions = new Float32Array(500 * 3);
-    for (let i = 0; i < 500 * 3; i++) {
-        clusterPositions[i] = cluster.position[i % 3] + (Math.random() - 0.5) * 100;
+    const clusterPositions = new Float32Array(150 * 3);
+    const clusterColors = new Float32Array(150 * 3);
+    for (let i = 0; i < 150 * 3; i += 3) {
+        const radius = 40;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        clusterPositions[i] = cluster.position[0] + radius * Math.sin(phi) * Math.cos(theta);
+        clusterPositions[i + 1] = cluster.position[1] + radius * Math.sin(phi) * Math.sin(theta);
+        clusterPositions[i + 2] = cluster.position[2] + radius * Math.cos(phi);
+        clusterColors[i] = (cluster.color >> 16 & 255) / 255;     // R
+        clusterColors[i + 1] = (cluster.color >> 8 & 255) / 255;  // G
+        clusterColors[i + 2] = (cluster.color & 255) / 255;       // B
     }
     clusterParticles.setAttribute('position', new THREE.BufferAttribute(clusterPositions, 3));
-    const clusterMaterial = new THREE.PointsMaterial({ color: cluster.color, size: 3 });
+    clusterParticles.setAttribute('color', new THREE.BufferAttribute(clusterColors, 3));
+    const clusterMaterial = new THREE.PointsMaterial({
+        size: 5,
+        vertexColors: true,
+        transparent: true,
+        blending: THREE.AdditiveBlending
+    });
     const clusterSystem = new THREE.Points(clusterParticles, clusterMaterial);
-    clusterSystem.userData = { name: cluster.name }; // For interaction
+    clusterSystem.userData = { name: cluster.name, text: cluster.text, position: cluster.position };
     scene.add(clusterSystem);
+    clusterSystems.push(clusterSystem);
 });
 
-// Camera Position
-camera.position.z = 600;
+// Dynamic Lighting
+const light = new THREE.PointLight(0xffffff, 1, 1000);
+light.position.set(0, 0, 400);
+scene.add(light);
 
-// Raycaster for Interactivity
+// Camera Positioning
+camera.position.z = 300;
+
+// Raycaster and Overlay
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 const overlay = document.querySelector('.overlay');
+let currentCluster = null;
 
-// Mouse Move Listener
 window.addEventListener('mousemove', (event) => {
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
     raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(scene.children.filter(obj => obj.isPoints));
+    const intersects = raycaster.intersectObjects(clusterSystems);
 
     if (intersects.length > 0) {
         const cluster = intersects[0].object;
-        overlay.innerHTML = `<h1>${clusters.find(c => c.name === cluster.userData.name).text}</h1>`;
-    } else {
+        if (cluster !== currentCluster) {
+            currentCluster = cluster;
+            overlay.innerHTML = `<h1>${cluster.userData.text}</h1>`;
+            overlay.classList.add('active');
+        }
+    } else if (currentCluster) {
+        currentCluster = null;
         overlay.innerHTML = `<h1>Ritik Chawla: Galactic Code Overlord</h1>`;
+        overlay.classList.remove('active');
     }
 });
 
-// Animation
+// Zoom on Click
+window.addEventListener('click', (event) => {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(clusterSystems);
+
+    if (intersects.length > 0) {
+        const cluster = intersects[0].object;
+        const targetPos = new THREE.Vector3(...cluster.userData.position).add(new THREE.Vector3(0, 0, 100));
+        new TWEEN.Tween(camera.position)
+            .to({ x: targetPos.x, y: targetPos.y, z: targetPos.z }, 1000)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .start();
+    } else {
+        new TWEEN.Tween(camera.position)
+            .to({ x: 0, y: 0, z: 300 }, 1000)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .start();
+    }
+});
+
+// Animation Loop
 function animate() {
     requestAnimationFrame(animate);
-    particleSystem.rotation.y += 0.001;
-    clusters.forEach((_, i) => {
-        const cluster = scene.children[i + 1]; // Skip background particles
-        cluster.rotation.y += 0.002;
+    particleSystem.rotation.y += 0.0003;
+    clusterSystems.forEach(cluster => {
+        cluster.rotation.y += 0.001;
     });
+    light.position.x = Math.sin(Date.now() * 0.001) * 200;
+    TWEEN.update();
     renderer.render(scene, camera);
 }
 animate();
