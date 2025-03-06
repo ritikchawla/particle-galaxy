@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ritik Chawla’s Cosmic Portfolio</title>
+    <title>Ritik Chawla | Software Developer</title>
     <style>
         body { 
             margin: 0; 
@@ -21,16 +21,50 @@
             pointer-events: none; 
             z-index: 10; 
             font-size: 28px; 
+            text-align: center;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); 
             opacity: 0; 
             transition: opacity 0.5s ease; 
         }
         .overlay.active { opacity: 1; }
+        .description {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            text-align: center;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .description h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .description p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 24px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
+    <div class="loading">Loading Galaxy...</div>
     <div class="overlay">
-        <h1>Ritik Chawla: Galactic Code Overlord</h1>
+        <h1>Ritik Chawla</h1>
+    </div>
+    <div class="description">
+        <h2>Software Developer</h2>
+        <p>Building Scalable Distributed Systems for MLOps</p>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.min.js"></script>

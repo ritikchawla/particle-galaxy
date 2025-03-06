@@ -35,10 +35,10 @@ scene.add(particleSystem);
 
 // Define Clusters (Resume Sections)
 const clusters = [
-    { name: "Experience", position: [-150, 80, 0], color: 0xff5555, text: "I Build Stuff That Doesn’t Crash" },
-    { name: "Skills", position: [150, 80, 0], color: 0x55ff55, text: "Golang? Kubernetes? I’m Your Guy" },
-    { name: "Projects", position: [-150, -80, 0], color: 0x5555ff, text: "Distributed Systems Are My Playground" },
-    { name: "Education", position: [150, -80, 0], color: 0xffff55, text: "9.16 CGPA, NBD" }
+    { name: "Experience", position: [-150, 80, 0], color: 0xff5555, text: "Building Scalable MLOps Systems" },
+    { name: "Skills", position: [150, 80, 0], color: 0x55ff55, text: "Distributed Systems | Cloud | ML Engineering" },
+    { name: "Projects", position: [-150, -80, 0], color: 0x5555ff, text: "MLOps Infrastructure & Automation" },
+    { name: "Contact", position: [150, -80, 0], color: 0xffff55, text: "Let's Build Something Amazing" }
 ];
 
 // Create Cluster Particle Systems with Glow
@@ -129,13 +129,34 @@ window.addEventListener('click', (event) => {
 });
 
 // Animation Loop
+// Add at the beginning of the file
+let isLoading = true;
+const loadingElement = document.querySelector('.loading');
+
+// After all resources are loaded
+window.addEventListener('load', () => {
+    isLoading = false;
+    loadingElement.style.display = 'none';
+});
+
+// Add these optimizations in the renderer setup
+renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
+renderer.setClearColor(0x000000, 1);
+
+// Update the animate function for better performance
 function animate() {
+    if (isLoading) return;
     requestAnimationFrame(animate);
-    particleSystem.rotation.y += 0.0003;
+    
+    // Optimize rotation calculations
+    const time = Date.now() * 0.001;
+    particleSystem.rotation.y = time * 0.0003;
+    
     clusterSystems.forEach(cluster => {
-        cluster.rotation.y += 0.001;
+        cluster.rotation.y = time * 0.001;
     });
-    light.position.x = Math.sin(Date.now() * 0.001) * 200;
+    
+    light.position.x = Math.sin(time) * 200;
     TWEEN.update();
     renderer.render(scene, camera);
 }
