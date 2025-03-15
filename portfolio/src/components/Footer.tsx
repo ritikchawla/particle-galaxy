@@ -8,7 +8,7 @@ const Footer = () => {
     { icon: <FiGithub size={20} />, url: 'https://github.com/ritikchawla' },
     { icon: <FiLinkedin size={20} />, url: 'https://linkedin.com/in/ritikchawla' },
     { icon: <FiMail size={20} />, url: 'mailto:contact@ritikchawla.com' },
-    { icon: <FiTwitter size={20} />, url: 'https://twitter.com/ritikchawla' },
+    { icon: <FiTwitter size={20} />, url: 'https://x.com/ritikchawla_' },
   ];
   
   return (
