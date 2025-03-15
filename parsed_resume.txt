@@ -1,0 +1,47 @@
+Ritik Chawla
+chawlaritik.github.io — linkedin.com/in/ritikchawla — chawlaritik@gmail.com — +91 8743844765 — New Delhi, India
+Experience
+Gojek | Software Engineer 2 August 2024 – Present
+• Developed and maintained high-throughput microservices using Golang, processing 50K+ transactions per minute
+• Architected event-driven systems processing 5TB+ daily data using Kafka clusters with 99.99% reliability
+• Designed and optimized data pipelines handling 50M+ daily events with sub-second latency
+• Optimized RabbitMQ federation and sharding architecture achieving 40% reduction in latency
+• Implemented service mesh using Istio for traffic management and security across 1000+ services
+• Created custom Kubernetes operators for automated management of 1000+ service configurations
+• Implemented GitOps workflow using ArgoCD for 500+ microservices, reducing deployment errors by 90%
+• Designed and implemented rate limiting and circuit breaking patterns improving system resilience
+• Managed Vault infrastructure for secrets management, handling 100K+ dynamic secrets across multiple zones
+• Implemented automated secret rotation and access control policies using Vault’s PKI infrastructure
+• Created Chef cookbooks for SMS SSL certificate management and Vault agent deployments
+• Developed custom tooling for Tencent IAP authorization and authentication workflow automation
+• Implemented distributed tracing and APM solutions reducing MTTR from hours to minutes across services
+MAQ Software | Software Engineer July 2022 – August 2024
+• Automated data ingestion from REST and GraphQL APIs into SQL Server and Azure Datalake using Databricks
+• Implemented distributed caching layer reducing average API response time by 70% and database load by 50%
+• Built logging and monitoring using Elasticsearch, Logstash, Kibana to enhance system observability
+• Optimized data warehouse queries reducing processing time by 80% for critical business reporting
+• Architected and implemented ETL pipelines for processing 1TB+ of data daily, resulting in a 50% reduction in
+processing time, resulting in improved data quality and reduced downstream processing errors
+Education
+Guru Gobind Singh Indraprastha University August 2018 – July 2022
+Bachelor of Technology in Computer Science CGPA: 9.16/10.0
+Skills
+Languages: Golang, C++, Python, SQL
+Systems: Distributed Systems, Microservices, Cloud Native Architecture, Service Mesh, System Design
+Infrastructure: Kubernetes, Docker, Terraform, Chef, ArgoCD, Istio, AWS, GCP, Tencent Cloud
+Data & Tools: Kafka, RabbitMQ, Redis, Vault, Elasticsearch, Prometheus, gRPC, PostgreSQL
+Projects
+Distributed Key-Value Store | Golang, gRPC
+• Built a distributed key-value store with linearizable consistency using multi-Raft protocol for consensus
+• Implemented automated leader election, log compaction, and dynamic membership changes with zero-downtime
+• Achieved 50K QPS with less than 5ms p99 latency using custom WAL and LSM tree-based storage engine
+• Implemented conflict resolution using vector clocks and merkle trees for eventual consistency
+Load Balancer Implementation | Golang, Docker
+• Implemented L7 load balancer with consistent hashing, connection pooling, and custom TCP congestion control
+• Built distributed health checking system with failure detection using phi-accrual algorithm
+• Achieved 100K RPS with less than 1ms added latency using custom lock-free queue implementation
+• Designed adaptive load shedding mechanism using token bucket algorithm and circuit breakers
+Distributed Rate Limiter | Golang, Redis
+• Implemented distributed rate limiting service using sliding window algorithm and Redis as backing store
+• Built coordination mechanism using Redis Lua scripts ensuring atomic operations across multiple nodes
+• Implemented token bucket and leaky bucket algorithms with configurable burst handling

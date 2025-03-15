@@ -13,36 +13,32 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-featured e-commerce platform with product management, shopping cart, and payment integration.',
+    title: 'Distributed Key-Value Store',
+    description: 'A distributed key-value store with linearizable consistency using multi-Raft protocol for consensus, featuring automated leader election, log compaction, and dynamic membership changes.',
     image: '/project1.jpg',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    githubUrl: 'https://github.com/ritikchawla/ecommerce-platform',
-    liveUrl: 'https://ecommerce-platform.vercel.app'
+    technologies: ['Golang', 'gRPC', 'Raft Consensus', 'LSM Tree', 'WAL'],
+    githubUrl: 'https://github.com/ritikchawla/distributed-kv-store'
   },
   {
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates and team workspaces.',
+    title: 'Load Balancer Implementation',
+    description: 'An L7 load balancer with consistent hashing, connection pooling, and custom TCP congestion control. Features distributed health checking with phi-accrual failure detection.',
     image: '/project2.jpg',
-    technologies: ['Next.js', 'TypeScript', 'Firebase', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/ritikchawla/task-management',
-    liveUrl: 'https://task-management.vercel.app'
+    technologies: ['Golang', 'Docker', 'TCP/IP', 'Circuit Breakers', 'Lock-free Queues'],
+    githubUrl: 'https://github.com/ritikchawla/load-balancer'
   },
   {
-    title: 'Weather Dashboard',
-    description: 'An interactive weather dashboard that provides real-time weather data and forecasts for locations worldwide.',
+    title: 'Distributed Rate Limiter',
+    description: 'A distributed rate limiting service using sliding window algorithm and Redis as backing store, with coordination mechanism using Redis Lua scripts for atomic operations.',
     image: '/project3.jpg',
-    technologies: ['JavaScript', 'React', 'Chart.js', 'Weather API'],
-    githubUrl: 'https://github.com/ritikchawla/weather-dashboard',
-    liveUrl: 'https://weather-dashboard.vercel.app'
+    technologies: ['Golang', 'Redis', 'Token Bucket', 'Leaky Bucket', 'Distributed Systems'],
+    githubUrl: 'https://github.com/ritikchawla/distributed-rate-limiter'
   },
   {
-    title: 'Portfolio Website',
-    description: 'A modern, responsive portfolio website built with Next.js and Tailwind CSS.',
+    title: 'Kubernetes Operator Framework',
+    description: 'A custom Kubernetes operator framework for automated management of microservice configurations, featuring GitOps workflow integration and service mesh compatibility.',
     image: '/project4.jpg',
-    technologies: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
-    githubUrl: 'https://github.com/ritikchawla/portfolio',
-    liveUrl: 'https://ritikchawla.com'
+    technologies: ['Golang', 'Kubernetes', 'Operator SDK', 'ArgoCD', 'Istio'],
+    githubUrl: 'https://github.com/ritikchawla/k8s-operator-framework'
   }
 ];
 
@@ -60,7 +56,7 @@ const ProjectsSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            A selection of projects I've worked on that showcase my skills and experience.
+            A selection of projects that showcase my expertise in distributed systems, infrastructure, and platform engineering.
           </p>
         </motion.div>
 

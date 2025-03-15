@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiCode, FiDatabase, FiLayout, FiTool } from 'react-icons/fi';
+import { FiCode, FiDatabase, FiServer, FiCloud, FiLayers } from 'react-icons/fi';
 
 interface SkillCategory {
   title: string;
@@ -10,24 +10,24 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    title: 'Frontend',
-    icon: <FiLayout className="text-primary" size={24} />,
-    skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Redux', 'Framer Motion']
-  },
-  {
-    title: 'Backend',
+    title: 'Languages & Core',
     icon: <FiCode className="text-primary" size={24} />,
-    skills: ['Node.js', 'Express', 'Python', 'Django', 'Java', 'Spring Boot', 'RESTful APIs', 'GraphQL']
+    skills: ['Golang', 'C++', 'Python', 'SQL', 'gRPC', 'Protocol Buffers', 'RESTful APIs', 'GraphQL']
   },
   {
-    title: 'Database',
-    icon: <FiDatabase className="text-primary" size={24} />,
-    skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'Firebase', 'Prisma', 'Mongoose']
+    title: 'Distributed Systems',
+    icon: <FiLayers className="text-primary" size={24} />,
+    skills: ['Microservices', 'Event-Driven Architecture', 'Consensus Algorithms', 'Distributed Tracing', 'Service Mesh', 'Fault Tolerance', 'High Availability', 'System Design']
   },
   {
-    title: 'Tools & Others',
-    icon: <FiTool className="text-primary" size={24} />,
-    skills: ['Git', 'Docker', 'AWS', 'CI/CD', 'Jest', 'Cypress', 'Webpack', 'Agile/Scrum', 'Figma']
+    title: 'Infrastructure & DevOps',
+    icon: <FiServer className="text-primary" size={24} />,
+    skills: ['Kubernetes', 'Docker', 'Terraform', 'Chef', 'ArgoCD', 'Istio', 'GitOps', 'CI/CD', 'Prometheus', 'Grafana', 'ELK Stack']
+  },
+  {
+    title: 'Cloud & Data',
+    icon: <FiCloud className="text-primary" size={24} />,
+    skills: ['AWS', 'GCP', 'Tencent Cloud', 'Kafka', 'RabbitMQ', 'Redis', 'PostgreSQL', 'Vault', 'Elasticsearch', 'Data Pipelines', 'MLOps']
   }
 ];
 
@@ -45,7 +45,7 @@ const SkillsSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills & Technologies</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            The technologies, languages, and tools I work with to bring ideas to life.
+            The technologies, languages, and tools I use to build scalable, resilient distributed systems.
           </p>
         </motion.div>
 

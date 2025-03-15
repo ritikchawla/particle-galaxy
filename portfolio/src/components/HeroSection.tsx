@@ -19,11 +19,11 @@ const HeroSection = () => {
               Hi, I'm <span className="gradient-text">Ritik Chawla</span>
             </h1>
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-6">
-              Software Engineer & Developer
+              Software Engineer & Distributed Systems Specialist
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
-              I build exceptional digital experiences with a focus on performance, 
-              accessibility, and cutting-edge technologies. Let's create something amazing together.
+              I architect and build high-performance distributed systems with a focus on scalability, 
+              reliability, and infrastructure automation. Specializing in Golang, Kubernetes, and cloud-native technologies.
             </p>
             <div className="flex flex-wrap gap-4">
               <ScrollLink

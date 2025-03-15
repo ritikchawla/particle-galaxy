@@ -12,39 +12,30 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    title: 'Senior Software Engineer',
-    company: 'Tech Innovations Inc.',
-    location: 'San Francisco, CA',
-    period: 'Jan 2022 - Present',
+    title: 'Software Engineer 2',
+    company: 'Gojek',
+    location: 'New Delhi, India',
+    period: 'August 2024 - Present',
     description: [
-      'Lead the development of a microservices architecture that improved system scalability by 40%',
-      'Implemented CI/CD pipelines that reduced deployment time by 60%',
-      'Mentored junior developers and conducted code reviews to ensure high-quality standards',
-      'Collaborated with product managers to define and prioritize feature development'
+      'Developed high-throughput microservices using Golang, processing 50K+ transactions per minute',
+      'Architected event-driven systems processing 5TB+ daily data using Kafka clusters with 99.99% reliability',
+      'Implemented service mesh using Istio for traffic management and security across 1000+ services',
+      'Created custom Kubernetes operators for automated management of 1000+ service configurations',
+      'Implemented GitOps workflow using ArgoCD for 500+ microservices, reducing deployment errors by 90%',
+      'Managed Vault infrastructure for secrets management, handling 100K+ dynamic secrets across multiple zones'
     ]
   },
   {
-    title: 'Software Developer',
-    company: 'Digital Solutions Ltd.',
-    location: 'New York, NY',
-    period: 'Mar 2019 - Dec 2021',
+    title: 'Software Engineer',
+    company: 'MAQ Software',
+    location: 'New Delhi, India',
+    period: 'July 2022 - August 2024',
     description: [
-      'Developed and maintained RESTful APIs using Node.js and Express',
-      'Built responsive front-end interfaces with React and Redux',
-      'Optimized database queries that improved application performance by 30%',
-      'Participated in agile development processes including daily stand-ups and sprint planning'
-    ]
-  },
-  {
-    title: 'Junior Web Developer',
-    company: 'WebCraft Studios',
-    location: 'Boston, MA',
-    period: 'Jun 2017 - Feb 2019',
-    description: [
-      'Created and maintained websites for various clients using HTML, CSS, and JavaScript',
-      'Implemented responsive designs that worked across multiple devices and browsers',
-      'Collaborated with designers to transform mockups into functional web pages',
-      'Assisted in troubleshooting and resolving website issues'
+      'Implemented distributed caching layer reducing average API response time by 70% and database load by 50%',
+      'Built logging and monitoring using Elasticsearch, Logstash, Kibana to enhance system observability',
+      'Architected and implemented ETL pipelines for processing 1TB+ of data daily, resulting in a 50% reduction in processing time',
+      'Automated data ingestion from REST and GraphQL APIs into SQL Server and Azure Datalake using Databricks',
+      'Optimized data warehouse queries reducing processing time by 80% for critical business reporting'
     ]
   }
 ];
@@ -63,7 +54,7 @@ const ExperienceSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Work Experience</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            My professional journey and the companies I've had the privilege to work with.
+            My professional journey building scalable distributed systems and cloud infrastructure.
           </p>
         </motion.div>
 
