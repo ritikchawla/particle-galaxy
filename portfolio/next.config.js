@@ -4,7 +4,9 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['localhost'],
+    unoptimized: true
   },
+  output: 'standalone'
 };
 
 module.exports = nextConfig;
