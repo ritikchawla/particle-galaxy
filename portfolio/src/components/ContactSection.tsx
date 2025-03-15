@@ -1,8 +1,27 @@
-import React from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiMail, FiPhone, FiMapPin, FiCode, FiServer, FiCloud, FiLayers } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMapPin, FiCode, FiServer, FiCloud, FiLayers, FiCoffee } from 'react-icons/fi';
 
 const ContactSection = () => {
+  const [clickedSkills, setClickedSkills] = useState<Record<string, boolean>>({});
+  const [coffeeClicks, setCoffeeClicks] = useState(0);
+  
+  const handleSkillClick = (skillCategory: string) => {
+    setClickedSkills(prev => ({
+      ...prev,
+      [skillCategory]: !prev[skillCategory]
+    }));
+  };
+  
+  const handleCoffeeClick = () => {
+    setCoffeeClicks(prev => prev + 1);
+    if (coffeeClicks === 4) {
+      // Easter egg: After 5 clicks on the coffee icon
+      alert("☕ Need coffee to code? Me too! Here's a virtual coffee for you! ☕");
+      setCoffeeClicks(0);
+    }
+  };
+
   return (
     <section id="contact" className="section-padding">
       <div className="container mx-auto px-4">
@@ -114,10 +133,21 @@ const ContactSection = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="card p-8"
           >
-            <h3 className="text-2xl font-bold mb-6">Tech Stack Visualization</h3>
+            <h3 className="text-2xl font-bold mb-6 flex items-center">
+              Tech Stack Visualization
+              <FiCoffee 
+                className="ml-2 text-gray-400 hover:text-amber-500 cursor-pointer transition-colors" 
+                size={20} 
+                onClick={handleCoffeeClick}
+                title="I run on coffee!"
+              />
+            </h3>
             
             <div className="space-y-6">
-              <div>
+              <div 
+                className={`${clickedSkills['golang'] ? 'transform scale-105' : ''} transition-transform cursor-pointer`}
+                onClick={() => handleSkillClick('golang')}
+              >
                 <div className="flex items-center mb-2">
                   <FiCode className="text-primary mr-2" size={20} />
                   <h4 className="text-lg font-semibold">Golang Ecosystem</h4>
@@ -132,7 +162,10 @@ const ContactSection = () => {
                 </div>
               </div>
               
-              <div>
+              <div 
+                className={`${clickedSkills['distributed'] ? 'transform scale-105' : ''} transition-transform cursor-pointer`}
+                onClick={() => handleSkillClick('distributed')}
+              >
                 <div className="flex items-center mb-2">
                   <FiLayers className="text-primary mr-2" size={20} />
                   <h4 className="text-lg font-semibold">Distributed Systems</h4>
@@ -147,7 +180,10 @@ const ContactSection = () => {
                 </div>
               </div>
               
-              <div>
+              <div 
+                className={`${clickedSkills['infra'] ? 'transform scale-105' : ''} transition-transform cursor-pointer`}
+                onClick={() => handleSkillClick('infra')}
+              >
                 <div className="flex items-center mb-2">
                   <FiServer className="text-primary mr-2" size={20} />
                   <h4 className="text-lg font-semibold">Infrastructure & DevOps</h4>
@@ -162,7 +198,10 @@ const ContactSection = () => {
                 </div>
               </div>
               
-              <div>
+              <div 
+                className={`${clickedSkills['cloud'] ? 'transform scale-105' : ''} transition-transform cursor-pointer`}
+                onClick={() => handleSkillClick('cloud')}
+              >
                 <div className="flex items-center mb-2">
                   <FiCloud className="text-primary mr-2" size={20} />
                   <h4 className="text-lg font-semibold">Cloud & Data</h4>
@@ -178,18 +217,10 @@ const ContactSection = () => {
               </div>
             </div>
             
-            <div className="mt-8 text-center">
-              <a
-                href="/Ritik_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-primary text-white rounded-md hover:bg-blue-600 transition-colors inline-flex items-center"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-                Download Resume
-              </a>
+            <div className="mt-8 text-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+              <p className="text-xs text-gray-500 dark:text-gray-600">
+                Try clicking on the skill categories and the coffee icon!
+              </p>
             </div>
           </motion.div>
         </div>

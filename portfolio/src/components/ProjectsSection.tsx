@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiCode } from 'react-icons/fi';
 import Image from 'next/image';
 
 interface Project {
@@ -11,6 +11,9 @@ interface Project {
   githubUrl?: string;
   liveUrl?: string;
 }
+
+// Easter egg: Konami code sequence
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 
 const projects: Project[] = [
   {
@@ -40,13 +43,50 @@ const projects: Project[] = [
     image: '/projects/k8s-operator.png',
     technologies: ['Golang', 'Kubernetes', 'Operator SDK', 'ArgoCD', 'Istio'],
     githubUrl: 'https://github.com/ritikchawla/k8s-operator-framework'
+  },
+  {
+    title: 'ML Model Serving Platform',
+    description: 'A scalable platform for deploying and serving machine learning models with automatic A/B testing, model versioning, and real-time performance monitoring.',
+    image: '/projects/ml_serving.png',
+    technologies: ['Python', 'Kubernetes', 'TensorFlow Serving', 'Prometheus', 'MLflow'],
+    githubUrl: 'https://github.com/ritikchawla/ml-serving-platform'
+  },
+  {
+    title: 'Feature Store Pipeline',
+    description: 'An end-to-end feature engineering pipeline with automated feature extraction, transformation, and storage for machine learning models with point-in-time correctness.',
+    image: '/projects/feature_store.png',
+    technologies: ['Python', 'Apache Spark', 'Feast', 'Airflow', 'Redis'],
+    githubUrl: 'https://github.com/ritikchawla/feature-store-pipeline'
   }
 ];
 
 const ProjectsSection = () => {
+  const [easterEggActivated, setEasterEggActivated] = useState(false);
+  const [konamiSequence, setKonamiSequence] = useState<string[]>([]);
+  
+  // Easter egg handler
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const newSequence = [...konamiSequence, e.key];
+      if (newSequence.length > konamiCode.length) {
+        newSequence.shift();
+      }
+      setKonamiSequence(newSequence);
+      
+      if (newSequence.length === konamiCode.length && 
+          newSequence.every((key, i) => key === konamiCode[i])) {
+        setEasterEggActivated(true);
+        setTimeout(() => setEasterEggActivated(false), 5000);
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [konamiSequence]);
+
   return (
     <section id="projects" className="section-padding bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4">
+      <div className={`container mx-auto px-4 ${easterEggActivated ? 'animate-pulse' : ''}`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,10 +94,14 @@ const ProjectsSection = () => {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            {easterEggActivated ? '🎮 You found the secret! 🎮' : 'Featured Projects'}
+          </h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            A selection of projects that showcase my expertise in distributed systems, infrastructure, and platform engineering.
+            {easterEggActivated 
+              ? "You've unlocked the Konami code! As a reward, here's a hint: try clicking on project images 3 times." 
+              : "A selection of projects that showcase my expertise in distributed systems, infrastructure, and MLOps."}
           </p>
         </motion.div>
 
@@ -71,12 +115,26 @@ const ProjectsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="relative h-60 bg-gray-200 dark:bg-gray-700">
+              <div className="relative h-60 bg-gray-200 dark:bg-gray-700 cursor-pointer" 
+                   onClick={() => {
+                     // Another easter egg - clicking on images
+                     const el = document.getElementById(`project-${index}`);
+                     if (el) {
+                       el.dataset.clicks = (parseInt(el.dataset.clicks || '0') + 1).toString();
+                       if (parseInt(el.dataset.clicks || '0') === 3) {
+                         el.classList.add('rotate-180');
+                         setTimeout(() => el.classList.remove('rotate-180'), 1000);
+                       }
+                     }
+                   }}>
                 <Image
+                  id={`project-${index}`}
                   src={project.image}
                   alt={project.title}
                   fill
                   style={{ objectFit: 'cover' }}
+                  className="transition-all duration-500"
+                  data-clicks="0"
                 />
               </div>
               <div className="p-6">
@@ -121,6 +179,13 @@ const ProjectsSection = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+        
+        {/* Hidden easter egg message that appears when you click in a specific pattern */}
+        <div className="text-center mt-12 opacity-0 hover:opacity-100 transition-opacity duration-300">
+          <p className="text-xs text-gray-500 dark:text-gray-600">
+            Psst! Try the Konami code: ↑↑↓↓←→←→BA
+          </p>
         </div>
       </div>
     </section>

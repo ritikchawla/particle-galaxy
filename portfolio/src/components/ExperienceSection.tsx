@@ -14,7 +14,7 @@ const experiences: ExperienceItem[] = [
   {
     title: 'Software Engineer 2',
     company: 'Gojek',
-    location: 'New Delhi, India',
+    location: 'Gurgaon, India',
     period: 'August 2024 - Present',
     description: [
       'Developed high-throughput microservices using Golang, processing 50K+ transactions per minute',
@@ -28,7 +28,7 @@ const experiences: ExperienceItem[] = [
   {
     title: 'Software Engineer',
     company: 'MAQ Software',
-    location: 'New Delhi, India',
+    location: 'Noida, India',
     period: 'July 2022 - August 2024',
     description: [
       'Implemented distributed caching layer reducing average API response time by 70% and database load by 50%',
