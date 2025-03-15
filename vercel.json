@@ -3,5 +3,6 @@
   "outputDirectory": "portfolio/.next",
   "installCommand": "cd portfolio && npm install",
   "devCommand": "cd portfolio && npm run dev",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "root": "portfolio"
 }
