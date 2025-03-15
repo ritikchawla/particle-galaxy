@@ -20,15 +20,15 @@ const ParticleBackground = () => {
     };
 
     class Particle {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      color: string;
+      x!: number;
+      y!: number;
+      size!: number;
+      speedX!: number;
+      speedY!: number;
+      color!: string;
 
       constructor() {
-        if (!canvas) return;  // Add null check
+        if (!canvas) return;
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 3 + 1;
