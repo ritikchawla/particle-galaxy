@@ -28,6 +28,7 @@ const ParticleBackground = () => {
       color: string;
 
       constructor() {
+        if (!canvas) return;  // Add null check
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 3 + 1;
@@ -39,6 +40,7 @@ const ParticleBackground = () => {
       }
 
       update() {
+        if (!canvas) return;  // Add null check
         this.x += this.speedX;
         this.y += this.speedY;
 
