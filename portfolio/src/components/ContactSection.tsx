@@ -40,7 +40,7 @@ const ContactSection = () => {
                     href="mailto:contact@ritikchawla.com" 
                     className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
                   >
-                    contact@ritikchawla.com
+                    chawlaritik@gmail.com
                   </a>
                 </div>
               </div>
@@ -52,7 +52,7 @@ const ContactSection = () => {
                 <div>
                   <h4 className="text-lg font-semibold mb-1">Phone</h4>
                   <a 
-                    href="tel:+1234567890" 
+                    href="tel:+91 8743844765" 
                     className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
                   >
                     +1 (234) 567-890
@@ -67,7 +67,7 @@ const ContactSection = () => {
                 <div>
                   <h4 className="text-lg font-semibold mb-1">Location</h4>
                   <p className="text-gray-600 dark:text-gray-400">
-                    San Francisco, California
+                    New Delhi, India
                   </p>
                 </div>
               </div>
