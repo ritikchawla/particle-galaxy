@@ -1,3 +1,6 @@
 {
-  "outputDirectory": "portfolio"
+  "buildCommand": "cd portfolio && npm run build",
+  "outputDirectory": "portfolio/.next",
+  "installCommand": "cd portfolio && npm install",
+  "devCommand": "cd portfolio && npm run dev"
 }
