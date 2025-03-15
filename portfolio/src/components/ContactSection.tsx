@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMapPin, FiCode, FiServer, FiCloud, FiLayers } from 'react-icons/fi';
 
 const ContactSection = () => {
   return (
@@ -37,7 +37,7 @@ const ContactSection = () => {
                 <div>
                   <h4 className="text-lg font-semibold mb-1">Email</h4>
                   <a 
-                    href="mailto:contact@ritikchawla.com" 
+                    href="mailto:chawlaritik@gmail.com" 
                     className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
                   >
                     chawlaritik@gmail.com
@@ -55,7 +55,7 @@ const ContactSection = () => {
                     href="tel:+91 8743844765" 
                     className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
                   >
-                    +1 (234) 567-890
+                    +91 8743844765
                   </a>
                 </div>
               </div>
@@ -112,70 +112,85 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
+            className="card p-8"
           >
-            <form className="card p-8">
-              <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
-              
-              <div className="mb-6">
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800"
-                  placeholder="John Doe"
-                  required
-                />
+            <h3 className="text-2xl font-bold mb-6">Tech Stack Visualization</h3>
+            
+            <div className="space-y-6">
+              <div>
+                <div className="flex items-center mb-2">
+                  <FiCode className="text-primary mr-2" size={20} />
+                  <h4 className="text-lg font-semibold">Golang Ecosystem</h4>
+                </div>
+                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full" style={{ width: '95%' }}></div>
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs">gRPC</span>
+                  <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs">Concurrency</span>
+                  <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs">Performance</span>
+                </div>
               </div>
               
-              <div className="mb-6">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800"
-                  placeholder="john@example.com"
-                  required
-                />
+              <div>
+                <div className="flex items-center mb-2">
+                  <FiLayers className="text-primary mr-2" size={20} />
+                  <h4 className="text-lg font-semibold">Distributed Systems</h4>
+                </div>
+                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" style={{ width: '90%' }}></div>
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-xs">Consensus</span>
+                  <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-xs">Fault Tolerance</span>
+                  <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-xs">Scalability</span>
+                </div>
               </div>
               
-              <div className="mb-6">
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800"
-                  placeholder="Project Inquiry"
-                  required
-                />
+              <div>
+                <div className="flex items-center mb-2">
+                  <FiServer className="text-primary mr-2" size={20} />
+                  <h4 className="text-lg font-semibold">Infrastructure & DevOps</h4>
+                </div>
+                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full" style={{ width: '92%' }}></div>
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-xs">Kubernetes</span>
+                  <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-xs">Terraform</span>
+                  <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-xs">GitOps</span>
+                </div>
               </div>
               
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800"
-                  placeholder="Hello, I'd like to talk about..."
-                  required
-                ></textarea>
+              <div>
+                <div className="flex items-center mb-2">
+                  <FiCloud className="text-primary mr-2" size={20} />
+                  <h4 className="text-lg font-semibold">Cloud & Data</h4>
+                </div>
+                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" style={{ width: '88%' }}></div>
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 rounded-full text-xs">Kafka</span>
+                  <span className="px-2 py-1 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 rounded-full text-xs">Redis</span>
+                  <span className="px-2 py-1 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 rounded-full text-xs">AWS/GCP</span>
+                </div>
               </div>
-              
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-primary text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
+            </div>
+            
+            <div className="mt-8 text-center">
+              <a
+                href="/Ritik_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-primary text-white rounded-md hover:bg-blue-600 transition-colors inline-flex items-center"
               >
-                <FiSend className="mr-2" />
-                Send Message
-              </button>
-            </form>
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Download Resume
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>
